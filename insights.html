@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights - Muhammad Waqas Ahmad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0D1B2A;
+            --accent: #00D9FF;
+            --accent-warm: #FF6B35;
+            --text: #E8F4F8;
+            --border: rgba(0, 217, 255, 0.2);
+            --success: #00FF88;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3a52 100%);
+            color: var(--text);
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--accent), #00B8D4);
+            color: #1A1A1A;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Main */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 2rem 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: rgba(232, 244, 248, 0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Articles */
+        .articles-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: rgba(27, 38, 59, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .article-badge {
+            display: inline-block;
+            background: rgba(0, 217, 255, 0.2);
+            color: var(--accent);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .article-card h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: rgba(232, 244, 248, 0.6);
+        }
+
+        .article-card p {
+            color: rgba(232, 244, 248, 0.8);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .read-more::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover .read-more::after {
+            transform: translateX(5px);
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--accent);
+            color: #1A1A1A;
+            border-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: rgba(232, 244, 248, 0.6);
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-warm);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 120px 1.5rem 2rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo">MW</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/products.html">Products</a>
+                <a href="/projects.html">Projects</a>
+                <a href="/insights.html">Insights</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html" class="cta-btn">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <div class="page-header">
+            <h1>Insights & Thought Leadership</h1>
+            <p>Analysis, research, and perspectives on digital transformation, AI governance, and programme delivery</p>
+        </div>
+
+        <div class="articles-list">
+            <!-- Springer Publication -->
+            <a href="https://link.springer.com" target="_blank" class="article-card reveal">
+                <span class="article-badge">Academic</span>
+                <h3>The Agile Smart City Nexus: A Framework for Adaptive Digital Era</h3>
+                <div class="article-meta">
+                    <span>Published in Springer Nature</span>
+                    <span>•</span>
+                    <span>2026</span>
+                    <span>•</span>
+                    <span>Co-authored with Dr. Saeed Nayeri</span>
+                </div>
+                <p>
+                    Peer-reviewed chapter examining the intersection of agile methodologies and smart city implementation. 
+                    Explores how iterative leadership and adaptive frameworks drive successful urban transformation initiatives 
+                    aligned with sustainability objectives and Vision 2030 strategic priorities.
+                </p>
+                <span class="read-more">Read Article</span>
+            </a>
+
+            <!-- LinkedIn Article 1 -->
+            <a href="https://www.linkedin.com/pulse/ai-autopilot-new-paradigm-productivity-innovation-ahmad--aht2e/" target="_blank" class="article-card reveal">
+                <span class="article-badge">Article</span>
+                <h3>AI Autopilot: The New Paradigm for Productivity and Innovation</h3>
+                <div class="article-meta">
+                    <span>LinkedIn Pulse</span>
+                    <span>•</span>
+                    <span>2024</span>
+                    <span>•</span>
+                    <span>5-minute read</span>
+                </div>
+                <p>
+                    In-depth analysis of AI automation's real-world impact on business processes. Examines how organizations 
+                    can leverage autonomous systems for competitive advantage while managing transformation risks and maintaining 
+                    human oversight of critical decisions.
+                </p>
+                <span class="read-more">Read Article</span>
+            </a>
+
+            <!-- LinkedIn Article 2 -->
+            <a href="https://www.linkedin.com/pulse/choosing-right-project-methodology-cloud-iot-why-hybrid-ahmad--deb4e/" target="_blank" class="article-card reveal">
+                <span class="article-badge">Article</span>
+                <h3>Choosing the Right Project Methodology: Cloud, IoT, and Why Hybrid Works</h3>
+                <div class="article-meta">
+                    <span>LinkedIn Pulse</span>
+                    <span>•</span>
+                    <span>2024</span>
+                    <span>•</span>
+                    <span>8-minute read</span>
+                </div>
+                <p>
+                    Practical guide to selecting appropriate project management methodologies for cloud and IoT programmes. 
+                    Features real-world case studies demonstrating hybrid approaches for complex infrastructure projects and 
+                    how to blend Agile flexibility with Waterfall governance certainty.
+                </p>
+                <span class="read-more">Read Article</span>
+            </a>
+
+            <!-- LinkedIn Article 3 -->
+            <a href="https://www.linkedin.com/pulse/beyond-hype-four-surprising-truths-ais-real-world-impact-ahmad--ajbef/" target="_blank" class="article-card reveal">
+                <span class="article-badge">Article</span>
+                <h3>Beyond the Hype: Four Surprising Truths About AI's Real-World Impact</h3>
+                <div class="article-meta">
+                    <span>LinkedIn Pulse</span>
+                    <span>•</span>
+                    <span>2024</span>
+                    <span>•</span>
+                    <span>6-minute read</span>
+                </div>
+                <p>
+                    Critical analysis of AI implementation in enterprise environments, separating marketing hype from practical 
+                    reality. Offers insights and frameworks for organizations planning digital transformation, including success 
+                    factors, common pitfalls, and ROI considerations.
+                </p>
+                <span class="read-more">Read Article</span>
+            </a>
+
+            <!-- LinkedIn Article 4 -->
+            <a href="https://www.linkedin.com/pulse/noops-reality-how-giants-like-netflix-amazon-actually-ahmad--ieduf/" target="_blank" class="article-card reveal">
+                <span class="article-badge">Article</span>
+                <h3>NoOps Reality: How Giants Like Netflix and Amazon Actually Do It</h3>
+                <div class="article-meta">
+                    <span>LinkedIn Pulse</span>
+                    <span>•</span>
+                    <span>2024</span>
+                    <span>•</span>
+                    <span>7-minute read</span>
+                </div>
+                <p>
+                    Examination of No-Operations (NoOps) paradigm and how cloud-native giants implement fully automated operations. 
+                    Provides practical lessons for enterprise transformation, infrastructure modernization, and achieving operational 
+                    excellence at scale.
+                </p>
+                <span class="read-more">Read Article</span>
+            </a>
+
+            <!-- Master's Dissertation -->
+            <div class="article-card reveal">
+                <span class="article-badge">Research</span>
+                <h3>Agile Methodologies and Transformation Leadership</h3>
+                <div class="article-meta">
+                    <span>University of Northampton</span>
+                    <span>•</span>
+                    <span>Master's Dissertation</span>
+                    <span>•</span>
+                    <span>Distinction Grade</span>
+                </div>
+                <p>
+                    Comprehensive research examining application of agile principles to large-scale programme transformation. 
+                    Focuses on governance, risk management, and stakeholder alignment in complex organizational change initiatives. 
+                    Provides frameworks and case studies for enterprise leaders.
+                </p>
+                <span style="color: rgba(232, 244, 248, 0.6); font-size: 0.9rem;">Available upon request</span>
+            </div>
+
+            <!-- KDP Books -->
+            <div class="article-card reveal">
+                <span class="article-badge">Published</span>
+                <h3>KDP Published Works - Thought Leadership Books</h3>
+                <div class="article-meta">
+                    <span>Amazon Kindle Direct Publishing</span>
+                    <span>•</span>
+                    <span>Multiple titles</span>
+                    <span>•</span>
+                    <span>Global audience</span>
+                </div>
+                <p>
+                    Published author on Kindle Direct Publishing platform, contributing original thought leadership on project 
+                    management, digital transformation, technology leadership, and organizational change. Topics span infrastructure 
+                    delivery, programme governance, and AI-driven transformation.
+                </p>
+                <span style="color: rgba(232, 244, 248, 0.6); font-size: 0.9rem;">Available on Amazon & Kindle</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/products.html">Products</a>
+                <a href="/projects.html">Case Studies</a>
+                <a href="https://linkedin.com/in/muhammadwaqas" target="_blank">LinkedIn</a>
+                <a href="https://github.com/wakaskhan17" target="_blank">GitHub</a>
+            </div>
+            <p>&copy; 2026 Muhammad Waqas Ahmad. Based in Riyadh, Saudi Arabia.</p>
+        </div>
+    </footer>
+
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

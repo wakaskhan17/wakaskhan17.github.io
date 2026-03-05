@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Muhammad Waqas Ahmad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0D1B2A;
+            --accent: #00D9FF;
+            --accent-warm: #FF6B35;
+            --text: #E8F4F8;
+            --border: rgba(0, 217, 255, 0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3a52 100%);
+            color: var(--text);
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--accent), #00B8D4);
+            color: #1A1A1A;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Main */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 2rem 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: rgba(232, 244, 248, 0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contact Methods Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-card {
+            background: rgba(27, 38, 59, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 25px 60px rgba(0, 217, 255, 0.15);
+            transform: translateY(-10px);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .contact-card p {
+            font-size: 0.95rem;
+            color: rgba(232, 244, 248, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .contact-link {
+            display: inline-block;
+            background: rgba(0, 217, 255, 0.15);
+            color: var(--accent);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .contact-link:hover {
+            background: var(--accent);
+            color: #1A1A1A;
+            border-color: var(--accent);
+        }
+
+        /* Form Section */
+        .form-section {
+            background: rgba(27, 38, 59, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .form-section h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .form-section p {
+            color: rgba(232, 244, 248, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent), #00B8D4);
+            color: #1A1A1A;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Info Section */
+        .info-section {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 4rem;
+        }
+
+        .info-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .info-section p {
+            color: rgba(232, 244, 248, 0.85);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: rgba(232, 244, 248, 0.6);
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-warm);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 120px 1.5rem 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-section {
+                padding: 2rem;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo">MW</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/products.html">Products</a>
+                <a href="/projects.html">Projects</a>
+                <a href="/insights.html">Insights</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html" class="cta-btn">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <div class="page-header">
+            <h1>Get In Touch</h1>
+            <p>Open to partnerships, speaking engagements, and collaboration on transformational digital initiatives</p>
+        </div>
+
+        <!-- Contact Methods -->
+        <div class="contact-grid">
+            <!-- LinkedIn -->
+            <div class="contact-card reveal">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <p>
+                    Connect with me on LinkedIn to stay updated on thought leadership, industry insights, 
+                    and opportunities. I regularly share articles on AI governance, agile delivery, and digital transformation.
+                </p>
+                <a href="https://www.linkedin.com/in/muhammadwaqas/" target="_blank" class="contact-link">
+                    View Profile
+                </a>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-card reveal">
+                <div class="contact-icon">✉️</div>
+                <h3>Email</h3>
+                <p>
+                    Direct email for professional inquiries, partnership discussions, and collaboration opportunities. 
+                    I respond to all inquiries within 24 hours.
+                </p>
+                <a href="mailto:wakaskhan17@gmail.com" class="contact-link">
+                    Send Email
+                </a>
+            </div>
+
+            <!-- GitHub -->
+            <div class="contact-card reveal">
+                <div class="contact-icon">🔗</div>
+                <h3>GitHub</h3>
+                <p>
+                    Explore my contributions to open-source projects, particularly HIVE AI agents platform. 
+                    See my code and collaborate on technical initiatives.
+                </p>
+                <a href="https://github.com/wakaskhan17" target="_blank" class="contact-link">
+                    View Repository
+                </a>
+            </div>
+
+            <!-- Phone -->
+            <div class="contact-card reveal">
+                <div class="contact-icon">📞</div>
+                <h3>Phone</h3>
+                <p>
+                    Available for calls in GST time zone. Schedule calls for project discussions, 
+                    strategic consulting, or partnership conversations.
+                </p>
+                <a href="tel:+966506672975" class="contact-link">
+                    Call Now
+                </a>
+            </div>
+
+            <!-- Location -->
+            <div class="contact-card reveal">
+                <div class="contact-icon">📍</div>
+                <h3>Location</h3>
+                <p>
+                    Based in Riyadh, Saudi Arabia. Open to remote collaboration, international partnerships, 
+                    and in-person meetings in GCC region.
+                </p>
+                <span style="display: inline-block; color: rgba(232, 244, 248, 0.6); font-size: 0.95rem;">Riyadh, Saudi Arabia</span>
+            </div>
+
+            <!-- Schedule Meeting -->
+            <div class="contact-card reveal">
+                <div class="contact-icon">📅</div>
+                <h3>Schedule Meeting</h3>
+                <p>
+                    Prefer to schedule a specific time? Use this option to book a 30-minute or 1-hour 
+                    consultation for partnership or project discussions.
+                </p>
+                <a href="https://calendly.com/muhammadwaqas" target="_blank" class="contact-link">
+                    Book Meeting
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="form-section reveal">
+            <h2>Send a Message</h2>
+            <p>Have a specific inquiry or opportunity? Send me a message and I'll get back to you as soon as possible.</p>
+
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company / Organization</label>
+                    <input type="text" id="company" name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section reveal">
+            <h3>📌 Preferred Contact Methods</h3>
+            <p>
+                <strong>For urgent matters:</strong> Call or WhatsApp +966 506 672 975<br>
+                <strong>For general inquiries:</strong> Email wakaskhan17@gmail.com<br>
+                <strong>For professional networking:</strong> Connect on LinkedIn<br>
+                <strong>For technical collaboration:</strong> Reach out on GitHub
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/products.html">Products</a>
+                <a href="/projects.html">Case Studies</a>
+                <a href="/insights.html">Insights</a>
+                <a href="https://linkedin.com/in/muhammadwaqas" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2026 Muhammad Waqas Ahmad. Based in Riyadh, Saudi Arabia.</p>
+        </div>
+    </footer>
+
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Case Studies - Muhammad Waqas Ahmad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #0D1B2A;
+            --accent: #00D9FF;
+            --accent-warm: #FF6B35;
+            --text: #E8F4F8;
+            --border: rgba(0, 217, 255, 0.2);
+            --success: #00FF88;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3a52 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 2rem;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+            transition: width 0.3s ease;
+        }
+        nav a:hover { color: var(--accent); }
+        nav a:hover::after { width: 100%; }
+        .cta-btn {
+            background: linear-gradient(135deg, var(--accent), #00B8D4);
+            color: #1A1A1A;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 150px 2rem 4rem;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .page-header h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            color: rgba(232, 244, 248, 0.8);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .case-studies {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        .case-study {
+            background: rgba(27, 38, 59, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .case-study:hover {
+            border-color: var(--accent);
+            box-shadow: 0 25px 60px rgba(0, 217, 255, 0.15);
+            transform: translateY(-10px);
+        }
+        .case-header {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 107, 53, 0.1));
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .case-badge {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--success);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 255, 136, 0.4);
+        }
+        .case-study h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        .case-subtitle {
+            font-size: 1.1rem;
+            color: rgba(232, 244, 248, 0.8);
+        }
+        .case-body {
+            padding: 2.5rem;
+        }
+        .case-section {
+            margin-bottom: 2rem;
+        }
+        .case-section h3 {
+            font-family: 'Clash Display', sans-serif;
+            color: var(--accent-warm);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .case-section p {
+            color: rgba(232, 244, 248, 0.85);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .metric {
+            background: rgba(0, 217, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+        .metric-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            color: var(--success);
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        .metric-label {
+            font-size: 0.9rem;
+            color: rgba(232, 244, 248, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .results-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .result-item {
+            display: flex;
+            gap: 1rem;
+        }
+        .result-item::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .result-item p {
+            color: rgba(232, 244, 248, 0.8);
+        }
+        .case-footer {
+            padding: 2.5rem;
+            background: rgba(0, 217, 255, 0.02);
+            border-top: 1px solid var(--border);
+        }
+        .tech-tags {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .tech-tag {
+            background: rgba(0, 217, 255, 0.15);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+        .vision-banner {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-left: 3px solid var(--accent-warm);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+        .vision-banner h3 {
+            color: var(--accent-warm);
+            margin-bottom: 0.8rem;
+        }
+        .vision-banner p {
+            color: rgba(232, 244, 248, 0.85);
+        }
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: rgba(232, 244, 248, 0.6);
+            margin-top: 4rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--accent-warm);
+        }
+        @media (max-width: 768px) {
+            main { padding: 120px 1.5rem 2rem; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+            .results-list { grid-template-columns: 1fr; }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo">MW</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/products.html">Products</a>
+                <a href="/projects.html">Projects</a>
+                <a href="/insights.html">Insights</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html" class="cta-btn">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>Projects & Case Studies</h1>
+            <p>Leading transformational programmes across smart city infrastructure, cloud modernisation, enterprise digital transformation, and national-scale telecommunications</p>
+        </div>
+
+        <div class="case-studies">
+            <!-- 1: Smart City Infrastructure -->
+            <div class="case-study reveal">
+                <div class="case-header">
+                    <span class="case-badge">SMART CITIES & IOT</span>
+                    <h2>Smart City Infrastructure Readiness Assessment</h2>
+                    <p class="case-subtitle">Establishing foundation for city-wide intelligent systems with 10,000+ IoT devices and 24/7 operations centre</p>
+                </div>
+                <div class="case-body">
+                    <div class="case-section">
+                        <h3>Challenge</h3>
+                        <p>Major metropolitan authority required comprehensive assessment of infrastructure readiness for deploying smart city systems across 6+ use cases (intelligent lighting, parking, waste management, air quality, safety). Required establishing network, data centre, and IoT integration foundation across city zones.</p>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-value">6+</div>
+                            <div class="metric-label">Smart City Use Cases</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">10,000+</div>
+                            <div class="metric-label">IoT Touchpoints</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">City-wide</div>
+                            <div class="metric-label">Deployment Scale</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">24/7</div>
+                            <div class="metric-label">Operations</div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>Solution: Infrastructure Readiness Programme</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p><strong>Network Architecture Assessment</strong> - Fibre backbone, wireless coverage, last-mile connectivity evaluation</p></div>
+                            <div class="result-item"><p><strong>Data Centre Capability</strong> - Server capacity, storage, redundancy, disaster recovery planning</p></div>
+                            <div class="result-item"><p><strong>IoT Integration Design</strong> - Sensor networks, gateway architecture, device management platform</p></div>
+                            <div class="result-item"><p><strong>Operations Centre Setup</strong> - 24/7 monitoring infrastructure, dashboards, alert systems</p></div>
+                            <div class="result-item"><p><strong>Security Framework</strong> - Cyber-security, data protection, compliance governance</p></div>
+                            <div class="result-item"><p><strong>Scalability Planning</strong> - Future expansion capacity, technology roadmap</p></div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>Results</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p>Infrastructure readiness assessment with gap analysis and phased enhancement plan</p></div>
+                            <div class="result-item"><p>IoT platform architecture designed for 10,000+ devices</p></div>
+                            <div class="result-item"><p>24/7 operations centre readiness with real-time monitoring</p></div>
+                            <div class="result-item"><p>Foundation established for city-wide intelligent systems</p></div>
+                            <div class="result-item"><p>Vision 2030 aligned smart city transformation capability</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">Smart Cities</span>
+                        <span class="tech-tag">IoT Infrastructure</span>
+                        <span class="tech-tag">Urban Technology</span>
+                        <span class="tech-tag">Data Centres</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2: Data Centre -->
+            <div class="case-study reveal">
+                <div class="case-header">
+                    <span class="case-badge">CLOUD INFRASTRUCTURE</span>
+                    <h2>Enterprise Data Centre Transformation & Cloud Migration</h2>
+                    <p class="case-subtitle">Deploying Tier III data centres with VMware-based cloud services (IaaS, DRaaS, LBaaS) across multiple regions</p>
+                </div>
+                <div class="case-body">
+                    <div class="case-section">
+                        <h3>Challenge</h3>
+                        <p>Enterprise required modernization of legacy data centre infrastructure into Tier III facilities with VMware-based cloud services including IaaS, DRaaS, and LBaaS. Required high availability (99.9% SLA), multi-region deployment, disaster recovery, and self-service cloud portal for business units.</p>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-value">2</div>
+                            <div class="metric-label">Tier III Data Centres</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">99.9%</div>
+                            <div class="metric-label">Availability SLA</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">500+</div>
+                            <div class="metric-label">VMs Deployed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">24 months</div>
+                            <div class="metric-label">Implementation</div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>Solution: Data Centre Modernisation</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p><strong>Tier III Design</strong> - Redundant power, cooling, networking with N+1 architecture</p></div>
+                            <div class="result-item"><p><strong>VMware Infrastructure</strong> - vSphere, vSAN, NSX for cloud-native architecture</p></div>
+                            <div class="result-item"><p><strong>Cloud Services</strong> - IaaS, DRaaS, LBaaS with automated provisioning</p></div>
+                            <div class="result-item"><p><strong>Disaster Recovery</strong> - Active-active geographically distributed DCs with automatic failover</p></div>
+                            <div class="result-item"><p><strong>Migration Strategy</strong> - Lift-and-shift, rearchitect, and cloud-native approaches</p></div>
+                            <div class="result-item"><p><strong>Operational Handover</strong> - 24/7 SOC, runbooks, knowledge transfer, team certification</p></div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>Results</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p>Two Tier III data centres successfully deployed with 99.9% SLA</p></div>
+                            <div class="result-item"><p>500+ virtual machines migrated and optimized</p></div>
+                            <div class="result-item"><p>Self-service cloud portal enabling business provisioning</p></div>
+                            <div class="result-item"><p>Disaster recovery with <4 hour RTO for critical systems</p></div>
+                            <div class="result-item"><p>40% operational cost reduction through consolidation and automation</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">Data Centre</span>
+                        <span class="tech-tag">VMware</span>
+                        <span class="tech-tag">Cloud Services</span>
+                        <span class="tech-tag">Disaster Recovery</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3: AI & Agile Transformation -->
+            <div class="case-study reveal">
+                <div class="case-header">
+                    <span class="case-badge">DIGITAL TRANSFORMATION</span>
+                    <h2>Enterprise AI & Agile Transformation Programme</h2>
+                    <p class="case-subtitle">Deploying Scrum methodology and ServiceNow Agile governance across IT and Cloud programmes with 15 AI automation use cases</p>
+                </div>
+                <div class="case-body">
+                    <div class="case-section">
+                        <h3>Challenge</h3>
+                        <p>Large enterprise IT organization operated on traditional Waterfall delivery, causing 30%+ project overruns and poor stakeholder alignment. Required comprehensive transformation to Agile-first delivery, implement enterprise-wide Agile governance through ServiceNow platform, and introduce AI automation across IT and Cloud programmes including intelligent ticketing, chatbots, predictive analytics, and RPA.</p>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-value">40+</div>
+                            <div class="metric-label">Programmes Transformed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">500+</div>
+                            <div class="metric-label">Team Members Trained</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">15</div>
+                            <div class="metric-label">AI Use Cases Deployed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">30%</div>
+                            <div class="metric-label">Schedule Acceleration</div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>Solution: Agile-First Transformation with AI</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p><strong>Scrum Framework</strong> - Deployed across all IT and Cloud teams with 2-week sprint cycles</p></div>
+                            <div class="result-item"><p><strong>ServiceNow Agile</strong> - Enterprise governance platform enabling portfolio visibility and dependency management</p></div>
+                            <div class="result-item"><p><strong>Agile Scaling</strong> - SAFe-aligned approach for coordinating 40+ programmes</p></div>
+                            <div class="result-item"><p><strong>AI Automation Suite</strong> - 15 use cases including intelligent routing, chatbots, predictive analytics, RPA</p></div>
+                            <div class="result-item"><p><strong>Change Management</strong> - Comprehensive organizational change with executive sponsorship and training</p></div>
+                            <div class="result-item"><p><strong>New Metrics</strong> - Agile KPIs for cycle time, velocity, and business value realization</p></div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>AI Automation Capabilities (15 Use Cases)</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p>Intelligent ticket routing using ML classification</p></div>
+                            <div class="result-item"><p>Chatbot-driven IT service desk (first-line resolution)</p></div>
+                            <div class="result-item"><p>Predictive analytics for infrastructure capacity planning</p></div>
+                            <div class="result-item"><p>RPA for invoice processing and reconciliation</p></div>
+                            <div class="result-item"><p>Anomaly detection for cloud cost optimization</p></div>
+                            <div class="result-item"><p>Sentiment analysis for service quality monitoring</p></div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>Transformation Results</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p>40+ programmes transitioned from Waterfall to Agile</p></div>
+                            <div class="result-item"><p>500+ team members trained and certified in Scrum</p></div>
+                            <div class="result-item"><p>30% average schedule acceleration through iterative delivery</p></div>
+                            <div class="result-item"><p>15 AI automation use cases deployed, reducing manual effort 45%</p></div>
+                            <div class="result-item"><p>ServiceNow portfolio visibility enabling cross-programme management</p></div>
+                            <div class="result-item"><p>£50M+ annual value realized through acceleration and automation</p></div>
+                        </div>
+                    </div>
+                    <div class="vision-banner">
+                        <h3>🚀 Future-Ready Organization</h3>
+                        <p>Transformation established Agile-first, AI-augmented organization capable of rapid innovation, responding at digital speed, and delivering continuous business value through iteration and automation.</p>
+                    </div>
+                </div>
+                <div class="case-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">Digital Transformation</span>
+                        <span class="tech-tag">Agile/Scrum</span>
+                        <span class="tech-tag">ServiceNow</span>
+                        <span class="tech-tag">AI Automation</span>
+                        <span class="tech-tag">Change Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4: Fibre Recovery -->
+            <div class="case-study reveal">
+                <div class="case-header">
+                    <span class="case-badge">INFRASTRUCTURE RECOVERY</span>
+                    <h2>National Fibre Infrastructure Recovery</h2>
+                    <p class="case-subtitle">Leading 80+ engineers through 5,000+ km critical network rehabilitation and restoration across 4 geographic regions</p>
+                </div>
+                <div class="case-body">
+                    <div class="case-section">
+                        <h3>Challenge</h3>
+                        <p>Critical national fibre infrastructure spanning 5,000+ km across multiple regions faced degradation and operational issues. Complex logistics, multi-vendor coordination, regulatory compliance, and safety requirements demanded immediate turnaround.</p>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-value">5,000+</div>
+                            <div class="metric-label">km Network</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">80+</div>
+                            <div class="metric-label">Engineers Managed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">18</div>
+                            <div class="metric-label">Months Timeline</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">£50M+</div>
+                            <div class="metric-label">Programme Budget</div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>Solution</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p>Centralized governance framework with daily stand-ups and escalation protocols</p></div>
+                            <div class="result-item"><p>Field team coordination across 4 regions with structured QA/QC</p></div>
+                            <div class="result-item"><p>Real-time financial management and commercial governance</p></div>
+                            <div class="result-item"><p>Zero critical safety incidents across all operations</p></div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>Results</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p>5,000+ km network successfully recovered and operational</p></div>
+                            <div class="result-item"><p>Delivered on 18-month timeline</p></div>
+                            <div class="result-item"><p>Set benchmark for national infrastructure programmes</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">Infrastructure</span>
+                        <span class="tech-tag">FTTH/OSP</span>
+                        <span class="tech-tag">Programme Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5: Network Modernisation -->
+            <div class="case-study reveal">
+                <div class="case-header">
+                    <span class="case-badge">STRATEGIC PLANNING</span>
+                    <h2>National Fibre Network Modernisation Roadmap</h2>
+                    <p class="case-subtitle">Designing 15,000+ km network modernisation strategy aligned to Vision 2030 with £500M+ investment plan</p>
+                </div>
+                <div class="case-body">
+                    <div class="case-section">
+                        <h3>Challenge</h3>
+                        <p>National telecommunications authority required comprehensive modernisation strategy for aging fibre infrastructure spanning 15,000+ km across three layers (long-haul, metro, access) aligned to Vision 2030 priorities.</p>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-value">15,000+</div>
+                            <div class="metric-label">km Coverage</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">3</div>
+                            <div class="metric-label">Network Layers</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">£500M+</div>
+                            <div class="metric-label">Investment Value</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Multi-year</div>
+                            <div class="metric-label">Programme Duration</div>
+                        </div>
+                    </div>
+                    <div class="case-section">
+                        <h3>Results</h3>
+                        <div class="results-list">
+                            <div class="result-item"><p>15,000+ km network assessment and modernisation roadmap delivered</p></div>
+                            <div class="result-item"><p>Investment business case approved by government</p></div>
+                            <div class="result-item"><p>Multi-year execution plan with clear governance</p></div>
+                            <div class="result-item"><p>Vision 2030 alignment achieved</p></div>
+                        </div>
+                    </div>
+                    <div class="vision-banner">
+                        <h3>🎯 Vision 2030 Impact</h3>
+                        <p>Modernisation roadmap directly supports Vision 2030 by modernizing critical telecom infrastructure, enabling digital economy growth, and establishing foundation for 5G deployment.</p>
+                    </div>
+                </div>
+                <div class="case-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">Infrastructure Strategy</span>
+                        <span class="tech-tag">Vision 2030</span>
+                        <span class="tech-tag">National Programmes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/products.html">Products</a>
+                <a href="/insights.html">Articles</a>
+                <a href="https://linkedin.com/in/muhammadwaqas" target="_blank">LinkedIn</a>
+                <a href="https://github.com/wakaskhan17" target="_blank">GitHub</a>
+            </div>
+            <p>&copy; 2026 Muhammad Waqas Ahmad. Based in Riyadh, Saudi Arabia.</p>
+        </div>
+    </footer>
+
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Muhammad Waqas Ahmad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0D1B2A;
+            --accent: #00D9FF;
+            --accent-warm: #FF6B35;
+            --text: #E8F4F8;
+            --border: rgba(0, 217, 255, 0.2);
+            --success: #00FF88;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3a52 100%);
+            color: var(--text);
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--accent), #00B8D4);
+            color: #1A1A1A;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Main */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 2rem 4rem;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background: rgba(27, 38, 59, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .intro-section h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .intro-section .tagline {
+            font-size: 1.2rem;
+            color: rgba(232, 244, 248, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .intro-section p {
+            color: rgba(232, 244, 248, 0.85);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: rgba(27, 38, 59, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .section-card h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-card h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.2rem;
+            color: var(--accent-warm);
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        .section-card:first-child h3 {
+            margin-top: 0;
+        }
+
+        .section-card p {
+            color: rgba(232, 244, 248, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 1rem 0 1rem 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-text {
+            color: rgba(232, 244, 248, 0.75);
+            font-size: 0.9rem;
+        }
+
+        /* Certifications Grid */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .cert-badge {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .cert-badge strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-badge p {
+            font-size: 0.85rem;
+            color: rgba(232, 244, 248, 0.6);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(27, 38, 59, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .skill-category h3 {
+            font-family: 'Clash Display', sans-serif;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: rgba(232, 244, 248, 0.8);
+        }
+
+        .skill-item::before {
+            content: '▸';
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        /* Awards */
+        .awards-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .award {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-left: 3px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .award-title {
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+
+        .award-desc {
+            font-size: 0.9rem;
+            color: rgba(232, 244, 248, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: rgba(232, 244, 248, 0.6);
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-warm);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 120px 1.5rem 2rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .awards-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo">MW</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/products.html">Products</a>
+                <a href="/projects.html">Projects</a>
+                <a href="/insights.html">Insights</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html" class="cta-btn">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <!-- Intro -->
+        <div class="intro-section reveal">
+            <h1>About Muhammad Waqas Ahmad</h1>
+            <p class="tagline">
+                Senior Programme & Delivery Leader with 13+ years transforming enterprise cloud, telecom, and digital infrastructure
+            </p>
+            <p>
+                I'm a proven programme delivery leader with deep expertise in cloud infrastructure, national fibre networks, 
+                digital transformation, and AI-powered governance systems. My career spans leading 80+ engineer teams through 
+                5,000+ km fibre recovery programmes, designing 15,000+ km network modernisation roadmaps, and driving 40+ concurrent 
+                AI and digital transformation initiatives.
+            </p>
+            <p>
+                Beyond programme management, I'm an innovator building commercial products (NEXUS intelligent delivery platform, 
+                AICVOptimize, KinderLab Learning), contributing to open-source AI initiatives, and publishing thought leadership 
+                on smart city technologies and agile transformation.
+            </p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="two-column reveal">
+            <!-- Education & Certifications -->
+            <div class="section-card">
+                <h2>Education</h2>
+                
+                <h3>Master's Degree</h3>
+                <p><strong>MSc Project Management</strong></p>
+                <p>University of Northampton, UK | <strong>Distinction Grade</strong></p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(232, 244, 248, 0.6);">
+                    Dissertation: "Agile Methodologies and Transformation Leadership"
+                </p>
+
+                <h3>Bachelor's Degree</h3>
+                <p><strong>BSc Electronics Engineering</strong></p>
+                <p>International Islamic University, Islamabad, Pakistan</p>
+
+                <h3>International Experience</h3>
+                <div style="margin-top: 1rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <p style="margin-bottom: 0.3rem; font-weight: 600; color: var(--accent-warm);">Japan Student Exchange Programme</p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 244, 248, 0.7);">
+                            Exposure to innovation practices and product-thinking methodologies
+                        </p>
+                    </div>
+                    <div>
+                        <p style="margin-bottom: 0.3rem; font-weight: 600; color: var(--accent-warm);">Barclays Eagle Labs Product Bootcamp</p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 244, 248, 0.7);">
+                            MVP development, prototyping, customer validation training
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="section-card">
+                <h2>Professional Certifications</h2>
+                
+                <div class="cert-grid">
+                    <div class="cert-badge">
+                        <strong>PMP</strong>
+                        <p>Project Management Professional | 2017</p>
+                    </div>
+                    <div class="cert-badge">
+                        <strong>MSP</strong>
+                        <p>Managing Successful Programmes | 2019</p>
+                    </div>
+                    <div class="cert-badge">
+                        <strong>CSM</strong>
+                        <p>Certified Scrum Master | 2020</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Key Competencies</h3>
+                <ul class="skill-list">
+                    <li class="skill-item">Enterprise Programme Governance</li>
+                    <li class="skill-item">Agile-First Delivery Models</li>
+                    <li class="skill-item">Multi-Vendor Management</li>
+                    <li class="skill-item">Risk & Compliance</li>
+                    <li class="skill-item">Digital Transformation</li>
+                    <li class="skill-item">Executive Stakeholder Management</li>
+                </ul>
+
+                <h3>Current Role</h3>
+                <p style="margin-top: 0.8rem;">
+                    <strong>Technical Manager – AI, Cloud & Digital Transformation</strong><br>
+                    <span style="font-size: 0.9rem; color: rgba(232, 244, 248, 0.6);">DETASAD | Riyadh, Saudi Arabia</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Skills & Expertise -->
+        <div class="section-card reveal" style="margin-bottom: 4rem;">
+            <h2 style="margin-bottom: 2rem;">Technical & Professional Skills</h2>
+            <div class="skills-grid">
+                <div>
+                    <h3>Cloud & Infrastructure</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">VMware IaaS/DRaaS/LBaaS</span>
+                        <span class="skill-item">Data Centre Architecture</span>
+                        <span class="skill-item">FTTH & Fibre Networks</span>
+                        <span class="skill-item">Network Infrastructure</span>
+                        <span class="skill-item">Telecom Systems</span>
+                    </div>
+                </div>
+                <div>
+                    <h3>Programme Management</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">PMP & MSP Certified</span>
+                        <span class="skill-item">Multi-Vendor Governance</span>
+                        <span class="skill-item">Risk Management</span>
+                        <span class="skill-item">Agile & Waterfall Delivery</span>
+                        <span class="skill-item">Programme Recovery</span>
+                    </div>
+                </div>
+                <div>
+                    <h3>Digital Transformation</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">AI & Automation Strategy</span>
+                        <span class="skill-item">IoT Platforms</span>
+                        <span class="skill-item">Smart City Technologies</span>
+                        <span class="skill-item">Enterprise Integration</span>
+                        <span class="skill-item">Cloud Migration</span>
+                    </div>
+                </div>
+                <div>
+                    <h3>Leadership & Innovation</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Executive Leadership</span>
+                        <span class="skill-item">Regulatory Engagement</span>
+                        <span class="skill-item">Product Development</span>
+                        <span class="skill-item">Open Source Contribution</span>
+                        <span class="skill-item">Thought Leadership</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Awards & Recognition -->
+        <div class="section-card reveal" style="margin-bottom: 4rem;">
+            <h2 style="margin-bottom: 1.5rem;">Awards & Recognition</h2>
+            <div class="awards-list">
+                <div class="award">
+                    <div class="award-title">🏆 Employee of the Year</div>
+                    <div class="award-desc">Recognized for exceptional performance and programme delivery leadership</div>
+                </div>
+                <div class="award">
+                    <div class="award-title">📜 Master's Distinction</div>
+                    <div class="award-desc">Graduated with distinction in Project Management</div>
+                </div>
+                <div class="award">
+                    <div class="award-title">✈️ Japan Exchange</div>
+                    <div class="award-desc">Selected for international student exchange programme</div>
+                </div>
+                <div class="award">
+                    <div class="award-title">🚀 ICURe Selection</div>
+                    <div class="award-desc">Selected for UK Innovate ICURe Engage programme</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision 2030 -->
+        <div class="section-card reveal">
+            <h2>Vision 2030 Alignment</h2>
+            <p>
+                All major programmes I lead directly support Saudi Arabia's Vision 2030 strategic objectives including 
+                digital transformation, national infrastructure modernization, smart city development, and AI-driven innovation. 
+                I bring deep expertise in translating strategic national priorities into actionable technology programmes.
+            </p>
+            <p style="margin-top: 1.5rem;">
+                <strong>Key Focus Areas:</strong>
+            </p>
+            <ul class="skill-list">
+                <li class="skill-item">Digital Economy Development</li>
+                <li class="skill-item">Smart City Infrastructure</li>
+                <li class="skill-item">National Telecom Modernisation</li>
+                <li class="skill-item">AI-Driven Governance</li>
+                <li class="skill-item">Regulatory Excellence</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/products.html">Products</a>
+                <a href="/projects.html">Case Studies</a>
+                <a href="/insights.html">Insights</a>
+                <a href="https://linkedin.com/in/muhammadwaqas" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2026 Muhammad Waqas Ahmad. Based in Riyadh, Saudi Arabia.</p>
+        </div>
+    </footer>
+
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

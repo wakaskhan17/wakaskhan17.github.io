@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Muhammad Waqas Ahmad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0D1B2A;
+            --primary-light: #1B263B;
+            --accent: #00D9FF;
+            --accent-warm: #FF6B35;
+            --accent-alt: #FFB703;
+            --text: #E8F4F8;
+            --text-dark: #1A1A1A;
+            --bg-dark: #0D1B2A;
+            --bg-light: #F8F9FA;
+            --border: rgba(0, 217, 255, 0.2);
+            --success: #00FF88;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a3a52 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--accent), #00B8D4);
+            color: var(--text-dark);
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 150px 2rem 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: rgba(232, 244, 248, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            background: rgba(27, 38, 59, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 25px 60px rgba(0, 217, 255, 0.15);
+            transform: translateY(-10px);
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 107, 53, 0.1));
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-header h2 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .product-tagline {
+            font-size: 1.1rem;
+            color: rgba(232, 244, 248, 0.8);
+            max-width: 600px;
+        }
+
+        .product-body {
+            padding: 2.5rem;
+        }
+
+        .product-section {
+            margin-bottom: 2rem;
+        }
+
+        .product-section h3 {
+            font-family: 'Clash Display', sans-serif;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .product-section p {
+            color: rgba(232, 244, 248, 0.85);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-item {
+            background: rgba(0, 217, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .feature-item strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: rgba(232, 244, 248, 0.75);
+        }
+
+        .product-footer {
+            padding: 2.5rem;
+            background: rgba(0, 217, 255, 0.02);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(0, 217, 255, 0.15);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .status-badge {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--success);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 255, 136, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: rgba(232, 244, 248, 0.6);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-warm);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 120px 1.5rem 2rem;
+            }
+
+            .product-card {
+                margin-bottom: 2rem;
+            }
+
+            .product-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo">MW</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/products.html">Products</a>
+                <a href="/projects.html">Projects</a>
+                <a href="/insights.html">Insights</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html" class="cta-btn">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="page-header">
+            <h1>Products & Platforms</h1>
+            <p>Building intelligent systems that solve enterprise delivery and education challenges</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- NEXUS -->
+            <div class="product-card reveal">
+                <div class="product-header">
+                    <div class="product-icon">🤖</div>
+                    <h2>NEXUS</h2>
+                    <p class="product-tagline">AI-Powered Delivery Intelligence Engine</p>
+                </div>
+
+                <div class="product-body">
+                    <div class="product-section">
+                        <h3>What is NEXUS?</h3>
+                        <p>
+                            NEXUS is an intelligent delivery intelligence platform that transforms how enterprises manage project governance 
+                            and execution. Built on Agile-first principles, it enables real-time governance, requirement decomposition, 
+                            and delivery intelligence across complex enterprise programmes.
+                        </p>
+                    </div>
+
+                    <div class="product-section">
+                        <h3>The Problem It Solves</h3>
+                        <p>
+                            70% of large infrastructure projects fail due to poor early feedback and requirement misalignment. Traditional 
+                            Waterfall planning becomes obsolete within weeks as priorities shift. NEXUS bridges the gap between executive 
+                            strategy and team execution with AI-native governance.
+                        </p>
+                    </div>
+
+                    <div class="product-section">
+                        <h3>Core Capabilities</h3>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <strong>✓ AI Requirement Decomposition</strong>
+                                <p>Converts strategic objectives into executable backlogs in seconds</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Real-Time Governance</strong>
+                                <p>Enforces governance constraints while maintaining delivery agility</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Risk Intelligence</strong>
+                                <p>Automatic dependency flagging and schedule impact analysis</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Agile-First Architecture</strong>
+                                <p>Strategic sprints with executive feedback every 2 weeks</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Delivery Analytics</strong>
+                                <p>Real-time dashboards showing programme health and trajectory</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Stakeholder Alignment</strong>
+                                <p>Continuous executive visibility into strategic delivery progress</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-section">
+                        <h3>Market Opportunity</h3>
+                        <p>
+                            TAM: £11.5B+ across development productivity (£500M), early failure detection (£10B), 
+                            and governance automation (£1B). Initial target: 500 UK digital agencies + 200 government bodies + 50 GCC mega-projects.
+                        </p>
+                    </div>
+
+                    <div class="product-section">
+                        <h3>Status & Roadmap</h3>
+                        <p>
+                            <strong>Currently:</strong> Core functionality complete with pilot validation in progress. 
+                            <strong>2026:</strong> Market launch targeting UK digital agencies and government bodies. 
+                            <strong>Path to Exit:</strong> £100M+ valuation by 2028-2030 (acquisition or scale as independent SaaS).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">AI/ML</span>
+                        <span class="tech-tag">SaaS Platform</span>
+                        <span class="tech-tag">Enterprise</span>
+                        <span class="tech-tag">Agile Governance</span>
+                    </div>
+                    <span class="status-badge">● In Development</span>
+                </div>
+            </div>
+
+            <!-- AICVOptimize -->
+            <div class="product-card reveal">
+                <div class="product-header">
+                    <div class="product-icon">💼</div>
+                    <h2>AICVOptimize</h2>
+                    <p class="product-tagline">Intelligent CV Optimization Platform</p>
+                </div>
+
+                <div class="product-body">
+                    <div class="product-section">
+                        <h3>What is AICVOptimize?</h3>
+                        <p>
+                            AICVOptimize is an AI-powered platform that helps professionals craft compelling CVs and resumes. 
+                            Using advanced NLP and recruitment intelligence, it analyzes job descriptions, optimizes content, 
+                            and increases interview conversion rates.
+                        </p>
+                    </div>
+
+                    <div class="product-section">
+                        <h3>Core Features</h3>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <strong>✓ AI-Powered Optimization</strong>
+                                <p>Real-time CV analysis and intelligent suggestions</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Job Match Analysis</strong>
+                                <p>Compare your CV against job descriptions</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Content Enhancement</strong>
+                                <p>Improve wording and impact of achievements</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ ATS Optimization</strong>
+                                <p>Pass applicant tracking systems with confidence</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Interview Preparation</strong>
+                                <p>AI-generated insights from your CV</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Multiple Formats</strong>
+                                <p>Export to PDF, DOCX, LinkedIn</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-section">
+                        <h3>Impact</h3>
+                        <p>
+                            Helps professionals globally increase interview conversion rates through intelligent CV optimization. 
+                            B2C SaaS model with focus on job seekers and career changers.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">AI/ML</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">B2C SaaS</span>
+                        <span class="tech-tag">Career Tech</span>
+                    </div>
+                    <span class="status-badge">● Active</span>
+                </div>
+            </div>
+
+            <!-- KinderLab Learning -->
+            <div class="product-card reveal">
+                <div class="product-header">
+                    <div class="product-icon">👶</div>
+                    <h2>KinderLab Learning</h2>
+                    <p class="product-tagline">Adaptive Early Childhood Learning Platform</p>
+                </div>
+
+                <div class="product-body">
+                    <div class="product-section">
+                        <h3>What is KinderLab?</h3>
+                        <p>
+                            KinderLab Learning is an innovative digital learning platform designed for early childhood education (ages 2-6). 
+                            Using adaptive algorithms and interactive experiences, it personalizes learning journeys for each child while 
+                            providing parents with progress insights.
+                        </p>
+                    </div>
+
+                    <div class="product-section">
+                        <h3>Core Features</h3>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <strong>✓ Adaptive Learning</strong>
+                                <p>Personalizes content based on child's progress and learning style</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Interactive Experiences</strong>
+                                <p>Engaging games, stories, and activities for developmental milestones</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Parent Dashboard</strong>
+                                <p>Real-time insights into child's learning progress</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Multi-Curriculum</strong>
+                                <p>Supports multiple educational frameworks and languages</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Teacher Integration</strong>
+                                <p>Seamless coordination between home and school learning</p>
+                            </div>
+                            <div class="feature-item">
+                                <strong>✓ Child Safety</strong>
+                                <p>Built with privacy and safety as core principles</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-section">
+                        <h3>Market Position</h3>
+                        <p>
+                            B2C platform targeting parents and B2B partnerships with schools and educational institutions. 
+                            Global EdTech market opportunity with focus on emerging markets and developed world premium segment.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">EdTech</span>
+                        <span class="tech-tag">Adaptive Learning</span>
+                        <span class="tech-tag">B2B2C</span>
+                        <span class="tech-tag">Mobile First</span>
+                    </div>
+                    <span class="status-badge">● Active</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/projects.html">Case Studies</a>
+                <a href="/insights.html">Articles</a>
+                <a href="https://linkedin.com/in/muhammadwaqas" target="_blank">LinkedIn</a>
+                <a href="https://github.com/wakaskhan17" target="_blank">GitHub</a>
+            </div>
+            <p>&copy; 2026 Muhammad Waqas Ahmad. Based in Riyadh, Saudi Arabia.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
