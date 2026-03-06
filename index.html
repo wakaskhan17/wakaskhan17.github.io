@@ -449,6 +449,42 @@
             }
         }
 
+        /* Hero Photo */
+        .hero-photo-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .hero-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            border: 3px solid var(--accent);
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .hero-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 30px 80px rgba(0, 217, 255, 0.5);
+        }
+
+        .photo-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            border: 3px dashed var(--accent);
+            background: rgba(0, 217, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: rgba(232, 244, 248, 0.6);
+            font-size: 3rem;
+        }
+
         /* Scroll reveal animation */
         .reveal {
             opacity: 0;
@@ -481,6 +517,14 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
+            <div class="hero-photo-container reveal">
+                <!-- IMPORTANT: Replace "photo.jpg" with your actual photo file name -->
+                <!-- Upload your photo to the same folder as the HTML files -->
+                <!-- Supported formats: JPG, PNG, WebP -->
+                <img src="photo.jpg" alt="Muhammad Waqas Ahmad" class="hero-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="photo-placeholder" style="display: none;">📸</div>
+            </div>
+
             <h1>Muhammad Waqas Ahmad</h1>
             <p class="hero-subtitle">
                 Building <span class="highlight">intelligent delivery systems</span> and scaling 
@@ -493,16 +537,16 @@
                     <div class="stat-label">Years Leadership</div>
                 </div>
                 <div class="stat reveal">
-                    <div class="stat-number">20+</div>
-                    <div class="stat-label">Major Programmes Led</div>
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Initiatives Delivered</div>
                 </div>
                 <div class="stat reveal">
-                    <div class="stat-number">15000+</div>
-                    <div class="stat-label">km Infrastructure Moderanization</div>
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">km Infrastructure</div>
                 </div>
                 <div class="stat reveal">
                     <div class="stat-number">3</div>
-                    <div class="stat-label">AI Products Built</div>
+                    <div class="stat-label">Products Built</div>
                 </div>
             </div>
 
